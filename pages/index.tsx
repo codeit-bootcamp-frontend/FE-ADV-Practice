@@ -5,6 +5,7 @@ import GradientShopify from "@/components/GradientShopify";
 import AnimatedAnchor from "@/components/AnimatedAnchor";
 import AnimatedSlideAnchor from "@/components/AnimatedSlideAnchor";
 import CustomSelector from "@/components/CustomSelector";
+import MarqueeLeftToRight from "@/components/MarqueeLeftToRight";
 
 const inter = Inter({ subsets: ["latin"] });
 

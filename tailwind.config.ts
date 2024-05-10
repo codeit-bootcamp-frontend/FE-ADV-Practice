@@ -13,6 +13,20 @@ const config: Config = {
       colors: {
         codeit_purple: "#6500c3",
       },
+      animation: {
+        "marquee-center-to-left": "marquee-center-to-left 25s linear infinite",
+        "marque-right-to-center": "marque-right-to-center 25s linear infinite",
+      },
+      keyframes: {
+        "marquee-center-to-left": {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+        "marque-right-to-center": {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
+      },
     },
   },
   darkMode: "class",

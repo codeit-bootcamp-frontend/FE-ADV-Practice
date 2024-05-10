@@ -7,3 +7,18 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
+
+@layer utilities {
+  .bg-gradient-marquee {
+    background-image: linear-gradient(
+      86deg,
+      #89ffbf 10.26%,
+      #a4fa84 53.53%,
+      #b3a7ff
+    );
+  }
+
+  .reverse {
+    animation-direction: reverse;
+  }
+}
