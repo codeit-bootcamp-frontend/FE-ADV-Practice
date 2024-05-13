@@ -14,7 +14,7 @@
  * // => [['a', 'b', 'c'], ['d']]
  */
 
-function chunk(array: any[], size: number = 1) {
+export function chunk(array: any[], size: number = 1) {
   size = Math.max(size, 0);
   const length = array == null ? 0 : array.length;
   if (!length || size < 1) {
