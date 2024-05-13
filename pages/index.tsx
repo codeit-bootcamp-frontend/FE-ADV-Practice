@@ -30,13 +30,11 @@ export default function Home() {
       {/* <GradientShopify /> */}
       {/* <AnimatedAnchor /> */}
       {/* <AnimatedSlideAnchor /> */}
-      <div className="w-32">
-        <CustomSelector
-          items={selectItems}
-          onSelect={() => {}}
-          initialItem={selectItems[0]}
-        />
-      </div>
+      <CustomSelector
+        items={selectItems}
+        onSelect={() => {}}
+        initialItem={selectItems[0]}
+      />
     </main>
   );
 }

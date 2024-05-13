@@ -30,6 +30,7 @@ function CustomSelector(props: CustomSelectorProps) {
       variant="bordered"
       defaultSelectedKeys={[initialItem.key]}
       classNames={{
+        base: ['max-w-32'],
         trigger: [
           "border",
           listItemHeight,
