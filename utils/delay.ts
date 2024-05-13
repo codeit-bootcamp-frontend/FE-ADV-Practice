@@ -10,11 +10,11 @@
  * delay(text => console.log(text), 1000, 'later')
  * // => Logs 'later' after one second.
  */
-function delay(func: Function, wait: number, ...args: any[]) {
+function delay(func: Function, wait = 0, ...args: any[]) {
   if (typeof func !== "function") {
     throw new TypeError("Expected a function");
   }
-  return setTimeout(func, +wait || 0, ...args);
+  return setTimeout(func, +wait, ...args);
 }
 
 export default delay;
