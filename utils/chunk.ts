@@ -15,7 +15,7 @@
  */
 
 export function chunk(array: any[], size: number = 1) {
-  size = Math.max(size, 0);
+  size = Math.max(Math.floor(size), 0);
   const length = array == null ? 0 : array.length;
   if (!length || size < 1) {
     return [];
