@@ -1,99 +1,45 @@
 import * as React from "react";
-import { useScroll, animated, useSpring } from "@react-spring/web";
-// import { useScroll, useSpring, motion } from "framer-motion";
+// import { useScroll, animated, useSpring } from "@react-spring/web";
+import { useScroll, useSpring, useTransform, motion } from "framer-motion";
 
 import styles from "./styles.module.scss";
 
-const X_LINES = 40;
-
 const PAGE_COUNT = 5;
 
-const INITIAL_WIDTH = 20;
-
 function ScrollLinked() {
-  const containerRef = React.useRef<HTMLDivElement>(null!);
-  const barContainerRef = React.useRef<HTMLDivElement>(null!);
-
-  const [textStyles, textApi] = useSpring(() => ({
-    y: "100%",
-  }));
-
-  const { scrollYProgress } = useScroll({
-    // container: containerRef,
-    onChange: ({ value: { scrollYProgress } }) => {
-      if (scrollYProgress > 0.7) {
-        textApi.start({ y: "0" });
-      } else {
-        textApi.start({ y: "100%" });
-      }
-    },
-    default: {
-      immediate: true,
-    },
+  const { scrollYProgress } = useScroll();
+  const clipPath = useTransform(
+    scrollYProgress,
+    (scrollYProgress) => `circle(${scrollYProgress * 100}%)`
+  );
+  const y = useSpring(100, { bounce: 0 });
+  useTransform(scrollYProgress, (scrollYProgress) => {
+    if (scrollYProgress > 0.7) {
+      y.set(0);
+    } else {
+      y.set(100);
+    }
   });
+  const yPercent = useTransform(y, (y) => `${y}%`);
 
   return (
-    <div ref={containerRef} className={styles.body}>
+    <div className={styles.body}>
       <div className={styles.animated__layers}>
-        <animated.div ref={barContainerRef} className={styles.bar__container}>
-          {Array.from({ length: X_LINES }).map((_, i) => (
-            <animated.div
-              key={i}
-              className={styles.bar}
-              style={{
-                width: scrollYProgress.to((scrollP) => {
-                  const percentilePosition = (i + 1) / X_LINES;
-
-                  return (
-                    INITIAL_WIDTH / 4 +
-                    40 *
-                      Math.cos(
-                        ((percentilePosition - scrollP) * Math.PI) / 1.5
-                      ) **
-                        32
-                  );
-                }),
-              }}
-            />
-          ))}
-        </animated.div>
-        <animated.div className={styles.bar__container__inverted}>
-          {Array.from({ length: X_LINES }).map((_, i) => (
-            <animated.div
-              key={i}
-              className={styles.bar}
-              style={{
-                width: scrollYProgress.to((scrollP) => {
-                  const percentilePosition = 1 - (i + 1) / X_LINES;
-
-                  return (
-                    INITIAL_WIDTH / 4 +
-                    40 *
-                      Math.cos(
-                        ((percentilePosition - scrollP) * Math.PI) / 1.5
-                      ) **
-                        32
-                  );
-                }),
-              }}
-            />
-          ))}
-        </animated.div>
-        <animated.div
+        <motion.div
           className={styles.dot}
           style={{
-            clipPath: scrollYProgress.to((val) => `circle(${val * 100}%)`),
+            clipPath,
           }}
         >
           <h1 className={styles.title}>
             <span>
-              <animated.span style={textStyles}>Aha!</animated.span>
+              <motion.span style={{ y: yPercent }}>Aha!</motion.span>
             </span>
             <span>
-              <animated.span style={textStyles}>You found me!</animated.span>
+              <motion.span style={{ y: yPercent }}>You found me!</motion.span>
             </span>
           </h1>
-        </animated.div>
+        </motion.div>
       </div>
       {new Array(PAGE_COUNT).fill(null).map((_, index) => (
         <div className={styles.full__page} key={index} />
