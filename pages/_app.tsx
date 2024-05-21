@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import "@/styles/scroll-indicator.css"
+// import "@/styles/scroll-indicator.css"
 import type { AppProps } from "next/app";
 import { NextUIProvider } from "@nextui-org/react";
 
