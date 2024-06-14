@@ -5,13 +5,13 @@ function Title({ children }: { children: React.ReactNode }) {
     triggerOnce: true,
     rootMargin: '-100px 0px',
   });
-  const styleClass = inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
+  const styleClass = inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
   return (
     <div
       ref={ref}
       className={`transition-all ${styleClass}`}
     >
-      <h2 className="text-6xl ">{children}</h2>
+      <h2 className="text-6xl">{children}</h2>
     </div>
   );
 }
@@ -26,7 +26,7 @@ const PAGE_TITLES = ["Don't", "you", "just", "hate", "popups?"];
 
 function ReactObserver() {
   return (
-    <div className="">
+    <div>
       {PAGE_TITLES.map((title) => (
         <Page key={title}>
           <Title>{title}</Title>
