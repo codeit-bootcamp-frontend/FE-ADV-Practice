@@ -17,8 +17,8 @@ function AnimateSpin() {
           y2="237"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#13B5C8"></stop>
-          <stop offset="1" stop-color="#13B5C8" stop-opacity="0"></stop>
+          <stop stopColor="#13B5C8"></stop>
+          <stop offset="1" stopColor="#13B5C8" stopOpacity="0"></stop>
         </linearGradient>
       </defs>
       <path
@@ -29,7 +29,7 @@ function AnimateSpin() {
       <path
         d="M1 279C1 125.465 125.465 1 279 1"
         stroke="url(#:Rddbqnla:)"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></path>
     </svg>
   );
