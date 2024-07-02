@@ -13,12 +13,12 @@ describe("MyInput", () => {
   it("should clear the value and onClear is triggered", async () => {
     // 필요하다면 jest mock 함수나 ref를 생성합니다.
     const onClear = jest.fn();
-    const ref = React.createRef<HTMLInputElement>();
+    // const ref = React.createRef<HTMLInputElement>();
 
     // MyInput 컴포넌트를 렌더링합니다.
-    const { getByRole } = render(
+    const { getByRole, getByDisplayValue } = render(
       <MyInput
-        ref={ref}
+        // ref={ref}
         isClearable
         defaultValue="junior@nextui.org"
         label="test input"
@@ -34,7 +34,8 @@ describe("MyInput", () => {
     // input 요소의 값이 ""인지 확인합니다.
     // onClear 함수가 한 번 호출되었는지 확인합니다.
     await waitFor(() => {
-      expect(ref.current?.value)?.toBe("");
+      // expect(ref.current?.value)?.toBe("");
+      expect(getByDisplayValue("")).toBeTruthy();
       expect(onClear).toHaveBeenCalledTimes(1);
     });
   });
